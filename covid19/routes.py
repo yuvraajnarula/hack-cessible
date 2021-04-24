@@ -1,17 +1,18 @@
 from flask import Flask, redirect, request
 from flask.helpers import flash, url_for
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, login_required
 from flask.templating import render_template
 from covid19 import app, login_manager, db
-from covid19.forms import RegistrationForm, LoginForm
-from covid19.models import User
+from covid19.forms import RegistrationForm, LoginForm, CreatePostForm
+from covid19.models import User, Posts
 import bcrypt
 
 
 @app.route("/home")
 @app.route("/")
 def home():
-    return render_template("home.html")
+    posts = Posts.query.all()
+    return render_template("home.html", posts=posts)
 
 
 @app.route("/about")
@@ -35,11 +36,10 @@ def login():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        id = 0
-        ''' TEMPORARY '''
-        name = request.form['name']
+        hashed_pw = bcrypt.generate_password_has(
+            request.form['password']).decode('UTF-8')
         email = request.form['email']
-        password = request.form['password']
+        password = hashed_pw
         phone = request.form['phone']
         record = User(id, email, password, phone)
         db.session.add(record)
@@ -55,3 +55,20 @@ from flask_login import login_required, current_user
 def postCreate():
     return render_template('postCreate.html', title="Create Post", name=current_user)
 '''
+
+
+@app.route("/post/create", methods=['GET', 'POST'])
+# TODO: Uncomment this later on
+# @login_required
+def createpost():
+    form = CreatePostForm()
+    if form.validate_on_submit():
+        item = request.form['item']
+        city = request.form['city']
+        descrip = request.form['descrip']
+        post = Posts(item, city, descrip)
+        db.session.add(post)
+        db.session.commit()
+    medical_items = ['Oxygen Cylinder', 'Ventilator Bed', 'ICU Bed',
+                     'Hospital Bed', 'Remidisiver', 'Medicine(mention in description']
+    return render_template("createpost.html", title="Create a New Post", items=medical_items, form=form)
