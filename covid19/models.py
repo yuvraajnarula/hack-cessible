@@ -45,10 +45,11 @@ class Posts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.id),
                         nullable=False)
 
-    def __init__(self, item, city, descrip):
+    def __init__(self, item, city, descrip, user_id):
         self.item = item
         self.city = city
         self.descrip = descrip
+        self.user_id = user_id
 
 
 db.create_all()

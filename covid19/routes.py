@@ -67,9 +67,13 @@ def createpost():
         item = request.form['item']
         city = request.form['city']
         descrip = request.form['descrip']
-        post = Posts(item, city, descrip)
+        user_id = current_user.get_id()
+        post = Posts(item, city, descrip, user_id)
         db.session.add(post)
         db.session.commit()
+        #print('post valid')
+        flash('Post created', 'success')
+        return redirect(url_for('home'))
     medical_items = ['Oxygen Cylinder', 'Ventilator Bed', 'ICU Bed',
                      'Hospital Bed', 'Remidisiver', 'Medicine(mention in description']
     return render_template("createpost.html", title="Create a New Post", items=medical_items, form=form)
