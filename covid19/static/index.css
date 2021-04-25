@@ -404,6 +404,10 @@ a.article-title:hover {
 .media{
   font-family: 'Roboto', sans-serif;
   width: 65%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 3rem;
+  padding-bottom:2rem ;
   border-radius: 10px;
   box-shadow: 5px 10px; 
   cursor: pointer;
