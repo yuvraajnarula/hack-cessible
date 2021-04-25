@@ -131,11 +131,6 @@ body{
   background: url('https://specials-images.forbesimg.com/imageserve/60844079aeb3a862f4cd010a/960x0.jpg?cropX1=0&cropX2=2643&cropY1=130&cropY2=1616') no-repeat;
   background-size: cover;
 }
-.covid-sec{
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-}
 .covid h1, .covid q{
   color: #eee;
 }
@@ -535,10 +530,4 @@ a.article-title:hover {
 .media p,.media.city, .media.email,.media .phone{
   color: #111;
   font-size: small;
-}
-.home-div{
-  height: 100vh;
-  width: 100%;
-  background: url('https://image.freepik.com/free-vector/coronavirus-maps-disease-situation-update-worldwide-coronavirus-spread-white-background-coronavirus-molecules-world-india-map-coronavirus-covid-19_68196-4274.jpg') black no-repeat;
-  background-size: cover;
 }
