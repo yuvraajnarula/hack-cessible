@@ -2,7 +2,8 @@
 {% block content %}
 <div class='content-section'>
     <form method="POST" , action="">
-	{{ form.csrf_token }}
+        You must be logged in to make a post
+        {{ form.csrf_token }}
         {{form.hidden_tag()}}
         <fieldset class='form-group'>
             <div class="form-group">
