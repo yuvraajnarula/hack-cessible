@@ -29,6 +29,7 @@ body{
   height: 100%;
   background: #111;
   transition: 1s;
+  z-index: 1000;
 }
 .preloader::before{
   content: '';
@@ -53,6 +54,49 @@ body{
 }
 .preloader.complete::after{
   right:-50%;
+}
+.loader{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50,-50);
+  width: 80px;
+  height: 80px;
+  box-shadow: border-box;
+  border: 3px solid #eee;
+  animation: animate 2s infinite linear;
+  z-index: 1000;
+}
+.loader::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #eee;
+  animation: animate_bfg 2s infinite linear;
+}
+@keyframes animate{
+  0%{
+    transform: translate(-50,-50) rotate(0deg);
+  }
+  25%{
+    transform: translate(-50,-50) rotate(180deg);
+  }
+  50%{
+    transform: translate(-50,-50) rotate(180deg);
+  }
+  75%{
+    transform: translate(-50,-50) rotate(360deg);
+  }
+  100%{
+    transform: translate(-50,-50) rotate(0deg);
+  }
+  
+}
+@keyframes animate_bfg{
+  
 }
 /*nav*/
 .content-section {
