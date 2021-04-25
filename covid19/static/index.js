@@ -1,17 +1,28 @@
 //preloader
-$(document).ready(function(){
-  var count = 0;
-  var counter = setInterval(function(){
-    if (count<101) {
-      $('.count').text(count + '%');
-      $('.loader').css('width', count + '%');
-      count++;
-    }
-    else{
-      clearInterval(counter)
-    }
-  },50)
-})
+//$(document).ready(function(){
+  //var count = 0;
+  //var counter = setInterval(function(){
+    //if (count<101) {
+      //$('.count').text(count + '%');
+      //$('.loader').css('width', count + '%');
+      //count++;
+    //}
+    //else{
+      //clearInterval(counter)
+    //}
+  //},50)
+//})
+var preload = document.createElement("div");
+preload.className = "preloader";
+preload.innerHTML =
+  '<div id="preloader"><div id="loader"></div></div>';
+document.body.appendChild(preload);
+window.addEventListener("load", function() {
+  preload.className += " fade";
+  setTimeout(function() {
+    preload.style.display = "none";
+  }, 5000);
+});
 //About.html about-sec 
 !(function($) {
     "use strict";
