@@ -21,22 +21,115 @@ body{
 }
 
 /*Pre Loader*/
-#loader{
-  position: fixed;
+.preloader {
+  height: 100%;
   width: 100%;
-  height: 400%;
-  z-index: 200000000;
-  overflow: visible;
-  top:-4rem;
-  background: #000 url('https://i.pinimg.com/originals/61/fc/ef/61fcef6b7ac47210565db63d27dc0b03.gif') no-repeat center center;
+  background: #2c4d63;
+  position: fixed;
+  left: 0;
+  background-size: 400%;
+  top: 0;
+  z-index: 10000;
+  perspective: 1600px;
+  perspective-origin: 20% 50%;
+  transition: 0.5s all;
+  opacity: 1;
+  animation: bg-animation 30s infinite alternate;
 }
-/*nav*/
-.content-section {
-    background: #ffffff;
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: white;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: white;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: white;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.preloader.fade {
+  transition: 2.5s;
+  opacity: 0;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/*About*/
+.about-container {
+    background: #eee;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px; 
+    height: 100%; 
   }
 
 nav{
@@ -92,6 +185,7 @@ nav{
     align-items: center;
     justify-content: center;
     background-color: #f1f1f1;
+    width: 100%;
 }
 
 .about-section{
@@ -174,7 +268,10 @@ a:hover {
  border-radius: 5px;
  background: #fff;
 }
-
+.member img{
+  width: 250px; 
+  height: 250px;
+}
 .team .member .member-img {
  position: relative;
  overflow: hidden;
@@ -295,7 +392,19 @@ section {
   padding-right: 3rem;
   padding-bottom: 7.5rem;
   text-transform: uppercase;
-  font-size: 24px;
+}
+form{
+  width: 45%;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 5px 5px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  position: relative;
+  left: 30%;
+  font-family: "Roboto", sans-serif;
 }
 /*Responsive*/
 
@@ -357,4 +466,53 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
-
+/*Posts*/
+.media{
+  font-family: 'Roboto', sans-serif;
+  width: 65%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 3rem;
+  padding-bottom:2rem ;
+  border-radius: 10px;
+  box-shadow: 5px 10px; 
+  cursor: pointer;
+  transition: 0.5s ease;
+  position: relative;
+}
+.media::before{
+  position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+.media:hover::before {
+	-webkit-animation: shine .75s;
+	animation: shine .75s;
+}
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+.media:hover{
+  border-radius: 15px;
+}
+.media p,.media.city, .media.email,.media .phone{
+  color: #111;
+  font-size: small;
+}
+.home-div{
+  height: 100vh;
+  width: 100%;
+  background: url('https://image.freepik.com/free-vector/coronavirus-maps-disease-situation-update-worldwide-coronavirus-spread-white-background-coronavirus-molecules-world-india-map-coronavirus-covid-19_68196-4274.jpg') black no-repeat;
+  background-size: cover;
+}

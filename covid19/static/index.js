@@ -1,24 +1,16 @@
-var loader;
-function loadNow(opacity) {
-    if(opacity <=0){
-        displayContent();
-    }
-    else{
-        loader.style.opacity = opacity;
-        window.setTimeout(function(){
-            loadNow(opacity - 0.05)
-        },100);
-    }
-}
-function displayContent(){
-    loader.style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-}
-document.addEventListener('DOMContentLoaded', function(){
-    loader=document.getElementById('loader');
-    loadNow(1);
+//preloader
+var preload = document.createElement("div");
+preload.className = "preloader";
+preload.innerHTML =
+  '<div id="preloader"><div id="loader"></div></div>';
+document.body.appendChild(preload);
+window.addEventListener("load", function() {
+  preload.className += " fade";
+  setTimeout(function() {
+    preload.style.display = "none";
+  }, 5000);
 });
-
+//About.html about-sec 
 !(function($) {
     "use strict";
   
