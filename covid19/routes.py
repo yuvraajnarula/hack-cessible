@@ -38,7 +38,8 @@ def register():
     form = RegistrationForm(request.form)
     if form.validate_on_submit():
         #print('form valid')
-        hashed_pw = bcrypt.hashpw(request.form['password'].encode('UTF-8'), bcrypt.gensalt())
+        hashed_pw = bcrypt.hashpw(
+            request.form['password'].encode('UTF-8'), bcrypt.gensalt())
         email = request.form['email']
         password = hashed_pw
         phone = request.form['phone']
@@ -46,16 +47,6 @@ def register():
         db.session.add(record)
         db.session.commit()
     return render_template('register.html', title="Register", form=form)
-
-
-'''
-from flask_login import login_required, current_user
-
-@app.route("/post", methods=['GET, POST'])
-@login_required
-def postCreate():
-    return render_template('postCreate.html', title="Create Post", name=current_user)
-'''
 
 
 @app.route("/post/create", methods=['GET', 'POST'])
