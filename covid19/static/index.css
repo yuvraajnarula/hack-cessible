@@ -63,7 +63,7 @@ body{
 .about-container {
     background: #eee;
     padding: 10px 20px;
-    margin-bottom: 20px; 
+    height: 100%; 
   }
 
 nav{
@@ -119,6 +119,7 @@ nav{
     align-items: center;
     justify-content: center;
     background-color: #f1f1f1;
+    width: 100%;
 }
 
 .about-section{
@@ -201,7 +202,10 @@ a:hover {
  border-radius: 5px;
  background: #fff;
 }
-
+.member img{
+  width: 250px; 
+  height: 250px;
+}
 .team .member .member-img {
  position: relative;
  overflow: hidden;
