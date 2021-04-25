@@ -65,6 +65,4 @@ def createpost():
         #print('post valid')
         flash('Post created', 'success')
         return redirect(url_for('home'))
-    medical_items = ['Oxygen Cylinder', 'Ventilator Bed', 'ICU Bed',
-                     'Hospital Bed', 'Remidisiver', 'Medicine(mention in description']
-    return render_template("createpost.html", title="Create a New Post", items=medical_items, form=form)
+    return render_template("createpost.html", title="Create a New Post", form=form)
