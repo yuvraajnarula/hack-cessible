@@ -477,6 +477,7 @@ a.article-title:hover {
   border-radius: 10px;
   box-shadow: 5px 10px; 
   cursor: pointer;
+  text-transform: initial;
   transition: 0.5s ease;
   position: relative;
 }
