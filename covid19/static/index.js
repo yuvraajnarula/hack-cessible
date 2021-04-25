@@ -1,24 +1,18 @@
-var loader;
-function loadNow(opacity) {
-    if(opacity <=0){
-        displayContent();
+//preloader
+$(document).ready(function(){
+  var count = 0;
+  var counter = setInterval(function(){
+    if (count<101) {
+      $('.count').text(count + '%');
+      $('.loader').css('width', count + '%');
+      count++;
     }
     else{
-        loader.style.opacity = opacity;
-        window.setTimeout(function(){
-            loadNow(opacity - 0.05)
-        },100);
+      clearInterval(counter)
     }
-}
-function displayContent(){
-    loader.style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-}
-document.addEventListener('DOMContentLoaded', function(){
-    loader=document.getElementById('loader');
-    loadNow(1);
-});
-
+  },50)
+})
+//About.html about-sec 
 !(function($) {
     "use strict";
   

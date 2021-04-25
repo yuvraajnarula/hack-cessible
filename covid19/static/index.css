@@ -21,22 +21,49 @@ body{
 }
 
 /*Pre Loader*/
-#loader{
-  position: fixed;
+.preloader{
+  z-index: 1000;
   width: 100%;
-  height: 400%;
-  z-index: 200000000;
-  overflow: visible;
-  top:-4rem;
-  background: #000 url('https://i.pinimg.com/originals/61/fc/ef/61fcef6b7ac47210565db63d27dc0b03.gif') no-repeat center center;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  background: #eee;
+  pointer-events: none;
+  animation: animate .5s forwards;
+  animation-delay: 9s;
 }
-/*nav*/
-.content-section {
-    background: #ffffff;
+.loader{
+  height: 100%;
+  width: 100%;
+  background: #111;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.count{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 18vw;
+  color: #eee;
+  font-weight: 800;
+  mix-blend-mode: difference;
+}
+@keyframes animate{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+/*About*/
+.about-container {
+    background: #eee;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px; 
+    height: 100%; 
   }
 
 nav{
@@ -92,6 +119,7 @@ nav{
     align-items: center;
     justify-content: center;
     background-color: #f1f1f1;
+    width: 100%;
 }
 
 .about-section{
@@ -174,7 +202,10 @@ a:hover {
  border-radius: 5px;
  background: #fff;
 }
-
+.member img{
+  width: 250px; 
+  height: 250px;
+}
 .team .member .member-img {
  position: relative;
  overflow: hidden;
