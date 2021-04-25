@@ -29,12 +29,11 @@ class User(db.Model):
     def is_anonymous(self):
         return False
 
-    # def __init__(self, uid, uemail, upassword, uphone):
-    #     self.id = uid
-    #     self.email = uemail
-    #     self.password = upassword
-    #     self.phone = uphone
-
+    def __init__(self, uemail, upassword, uphone):
+        self.email = uemail
+        self.password = upassword
+        self.phone = uphone
+        self.authenticated = False
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,10 +45,11 @@ class Posts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.id),
                         nullable=False)
 
-    def __init__(self, item, city, descrip):
+    def __init__(self, item, city, descrip, user_id):
         self.item = item
         self.city = city
         self.descrip = descrip
+        self.user_id = user_id
 
 
 db.create_all()

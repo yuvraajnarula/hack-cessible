@@ -25,7 +25,7 @@ class RegistrationForm(FlaskForm):
                     "There is already an account with this email. Please log in instead")
         else:
             pass
-
+        
 
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Length(2, 120)])
@@ -40,7 +40,6 @@ class LoginForm(FlaskForm):
             raise ValidationError("No account with this email address exists")
         if password.data != emailval.password:
             raise ValidationError("Incorrect email address or password")
-        return True
 
 
 class CreatePostForm(FlaskForm):

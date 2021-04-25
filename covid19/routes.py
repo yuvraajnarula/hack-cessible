@@ -22,10 +22,11 @@ def about():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    form = LoginForm(request.form)
     if form.validate_on_submit():
+        #print('login valid')
         user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password(user.password, form.password.data):
+        if user and bcrypt.checkpw(form.password.data.encode('UTF-8'), user.password):
             login_user(user, remember=form.remember.data)
             flash('Successfully logged in', 'success')
             return redirect(url_for('home'))
@@ -34,14 +35,14 @@ def login():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    form = RegistrationForm()
+    form = RegistrationForm(request.form)
     if form.validate_on_submit():
-        hashed_pw = bcrypt.generate_password_has(
-            request.form['password']).decode('UTF-8')
+        #print('form valid')
+        hashed_pw = bcrypt.hashpw(request.form['password'].encode('UTF-8'), bcrypt.gensalt())
         email = request.form['email']
         password = hashed_pw
         phone = request.form['phone']
-        record = User(id, email, password, phone)
+        record = User(email, password, phone)
         db.session.add(record)
         db.session.commit()
     return render_template('register.html', title="Register", form=form)
@@ -59,16 +60,20 @@ def postCreate():
 
 @app.route("/post/create", methods=['GET', 'POST'])
 # TODO: Uncomment this later on
-# @login_required
+@login_required
 def createpost():
     form = CreatePostForm()
     if form.validate_on_submit():
         item = request.form['item']
         city = request.form['city']
         descrip = request.form['descrip']
-        post = Posts(item, city, descrip)
+        user_id = current_user.get_id()
+        post = Posts(item, city, descrip, user_id)
         db.session.add(post)
         db.session.commit()
+        #print('post valid')
+        flash('Post created', 'success')
+        return redirect(url_for('home'))
     medical_items = ['Oxygen Cylinder', 'Ventilator Bed', 'ICU Bed',
                      'Hospital Bed', 'Remidisiver', 'Medicine(mention in description']
     return render_template("createpost.html", title="Create a New Post", items=medical_items, form=form)
