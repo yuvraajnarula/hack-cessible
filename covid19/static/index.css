@@ -436,3 +436,7 @@ a.article-title:hover {
 .media:hover{
   border-radius: 15px;
 }
+.media p,.media.city, .media.email,.media .phone{
+  color: #111;
+  font-size: small;
+}
